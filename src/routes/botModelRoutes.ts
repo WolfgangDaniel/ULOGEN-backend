@@ -9,6 +9,12 @@ const router: express.Router = express.Router();
 router.get("/", BotModelController.getBotModels);
 
 /**
+ * Get specified BotModels
+ */
+ router.get("/specificBotModels", BotModelController.getSpecificBotModels);
+
+
+/**
  * Get a BotModel
  */
 router.get("/:BotModelId", BotModelController.getBotModel);
