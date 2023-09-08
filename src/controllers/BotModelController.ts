@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import BotModel from "../models/BotModel";
 import BaseController from "../controllers/BaseController";
 import BotLinkerContext from "../botLinkers/botLinkerContext";
+import fs from 'fs';
 
 class BotModelController extends BaseController {
   getBotModels = async (req: Request, res: Response): Promise<void | any> => {
@@ -28,6 +29,10 @@ class BotModelController extends BaseController {
         );
         res.send(botLinkerContext.linkBot(botModel));
       } else {
+        // print out bot model to better understand the data that is stored
+        const jsonFilePath = 'botModel.json';
+        fs.writeFileSync(jsonFilePath, JSON.stringify(botModel, null, 2));
+        
         res.send(botModel);
       }
     } catch (error) {
