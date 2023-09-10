@@ -15,47 +15,24 @@ class BotModelController extends BaseController {
     }
   };
 
-  getSpecificBotModels = async (req: Request, res: Response): Promise<void | any> => {
+  generateUiLogs = async (req: Request, res: Response): Promise<void | any> => {
     try {
-      const botModelIds: string[] = Array.isArray(req.query.BotModelIds)
-        ? req.query.BotModelIds.map(String)
-        : [String(req.query.BotModelIds || '')];
-  
-      if (botModelIds.length === 0) {
+      console.log(req.query)
+      const botModelsForUiLog: any[] = typeof req.query.BotModelsForUiLog === 'undefined' ? [] : (req.query.BotModelsForUiLog as any[]);
+      const uiLog: any = {};
+      if (botModelsForUiLog.length === 0) {
         return BaseController.notFound(res);
       }
-  
-      const botModels: any[] = [];
-  
-      for (const botModelId of botModelIds) {
-        const botModel = await BotModel.findById(botModelId);
-  
+
+      for (const botModel of botModelsForUiLog) {
         if (!botModel) {
           return BaseController.notFound(res);
         }
-  
-        if (req.query.type) {
-          const botLinkerContext: BotLinkerContext = new BotLinkerContext(
-            req.query.type.toString()
-          );
-          const linkedBotModel = botLinkerContext.linkBot(botModel);
-  
-          // Save the linkedBotModel to a JSON file with a unique name
-          const jsonFilePath = `linkedBotModel_${botModelId}.json`;
-          fs.writeFileSync(jsonFilePath, JSON.stringify(linkedBotModel, null, 2));
-  
-          botModels.push(JSON.stringify(linkedBotModel));
-        } else {
           // Save the botModel to a JSON file with a unique name
-          const jsonFilePath = `botModel_${botModelId}.json`;
-          fs.writeFileSync(jsonFilePath, JSON.stringify(botModel.toJSON(), null, 2));
-  
-          // Push the document instance, not the model
-          botModels.push(JSON.stringify(botModel));
-        }
+          const jsonFilePath = `botModel_${botModel._id}.json`;
+          fs.writeFileSync(jsonFilePath, JSON.stringify(botModel, null, 2));
       }
-  
-      res.send(botModels);
+      res.send(uiLog);
     } catch (error) {
       return BaseController.fail(res, error);
     }

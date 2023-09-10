@@ -1,0 +1,25 @@
+{
+  "_id": "64fd7263ae0566875061d5f6",
+  "name": "test2",
+  "model": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<bpmn2:definitions xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:bpmn2=\"http://www.omg.org/spec/BPMN/20100524/MODEL\" xmlns:bpmndi=\"http://www.omg.org/spec/BPMN/20100524/DI\" xmlns:dc=\"http://www.omg.org/spec/DD/20100524/DC\" xmlns:di=\"http://www.omg.org/spec/DD/20100524/DI\" xmlns:rpa=\"http://some-company/schema/bpmn/rpa\" id=\"sample-diagram\" targetNamespace=\"http://bpmn.io/schema/bpmn\" xsi:schemaLocation=\"http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd\"><bpmn2:process id=\"Process_1\" isExecutable=\"false\"><bpmn2:startEvent id=\"StartEvent_1\"><bpmn2:outgoing>Flow_0klgw51</bpmn2:outgoing></bpmn2:startEvent><bpmn2:subProcess id=\"Activity_1lrvlsb\" name=\"WithBrowser\" rpa:operation=\"WithBrowser\"><bpmn2:incoming>Flow_0klgw51</bpmn2:incoming><bpmn2:outgoing>Flow_1b18fiq</bpmn2:outgoing><bpmn2:startEvent id=\"Event_11jp7k6\"><bpmn2:outgoing>Flow_014v5db</bpmn2:outgoing></bpmn2:startEvent><bpmn2:task id=\"Activity_0re4tku\" name=\"BrowserGetText\" rpa:operation=\"BrowserGetText\"><bpmn2:incoming>Flow_014v5db</bpmn2:incoming><bpmn2:outgoing>Flow_1gda1jv</bpmn2:outgoing></bpmn2:task><bpmn2:sequenceFlow id=\"Flow_014v5db\" sourceRef=\"Event_11jp7k6\" targetRef=\"Activity_0re4tku\" /><bpmn2:sequenceFlow id=\"Flow_1gda1jv\" sourceRef=\"Activity_0re4tku\" targetRef=\"Event_1cvp790\" /><bpmn2:endEvent id=\"Event_1cvp790\"><bpmn2:incoming>Flow_1gda1jv</bpmn2:incoming></bpmn2:endEvent></bpmn2:subProcess><bpmn2:sequenceFlow id=\"Flow_0klgw51\" sourceRef=\"StartEvent_1\" targetRef=\"Activity_1lrvlsb\" /><bpmn2:endEvent id=\"Event_0wpnq8p\"><bpmn2:incoming>Flow_1b18fiq</bpmn2:incoming></bpmn2:endEvent><bpmn2:sequenceFlow id=\"Flow_1b18fiq\" sourceRef=\"Activity_1lrvlsb\" targetRef=\"Event_0wpnq8p\" /></bpmn2:process><bpmndi:BPMNDiagram id=\"BPMNDiagram_1\"><bpmndi:BPMNPlane id=\"BPMNPlane_1\" bpmnElement=\"Process_1\"><bpmndi:BPMNShape id=\"_BPMNShape_StartEvent_2\" bpmnElement=\"StartEvent_1\"><dc:Bounds x=\"412\" y=\"240\" width=\"36\" height=\"36\" /></bpmndi:BPMNShape><bpmndi:BPMNShape id=\"Event_0wpnq8p_di\" bpmnElement=\"Event_0wpnq8p\"><dc:Bounds x=\"1142\" y=\"300\" width=\"36\" height=\"36\" /></bpmndi:BPMNShape><bpmndi:BPMNShape id=\"Activity_1lrvlsb_di\" bpmnElement=\"Activity_1lrvlsb\" isExpanded=\"true\"><dc:Bounds x=\"490\" y=\"158\" width=\"610\" height=\"252\" /></bpmndi:BPMNShape><bpmndi:BPMNShape id=\"Event_11jp7k6_di\" bpmnElement=\"Event_11jp7k6\"><dc:Bounds x=\"530\" y=\"240\" width=\"36\" height=\"36\" /></bpmndi:BPMNShape><bpmndi:BPMNShape id=\"Activity_0re4tku_di\" bpmnElement=\"Activity_0re4tku\"><dc:Bounds x=\"600\" y=\"218\" width=\"100\" height=\"80\" /></bpmndi:BPMNShape><bpmndi:BPMNShape id=\"Event_1cvp790_di\" bpmnElement=\"Event_1cvp790\"><dc:Bounds x=\"962\" y=\"202\" width=\"36\" height=\"36\" /></bpmndi:BPMNShape><bpmndi:BPMNEdge id=\"Flow_014v5db_di\" bpmnElement=\"Flow_014v5db\"><di:waypoint x=\"566\" y=\"258\" /><di:waypoint x=\"600\" y=\"258\" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id=\"Flow_1gda1jv_di\" bpmnElement=\"Flow_1gda1jv\"><di:waypoint x=\"700\" y=\"258\" /><di:waypoint x=\"831\" y=\"258\" /><di:waypoint x=\"831\" y=\"220\" /><di:waypoint x=\"962\" y=\"220\" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id=\"Flow_0klgw51_di\" bpmnElement=\"Flow_0klgw51\"><di:waypoint x=\"448\" y=\"258\" /><di:waypoint x=\"490\" y=\"258\" /></bpmndi:BPMNEdge><bpmndi:BPMNEdge id=\"Flow_1b18fiq_di\" bpmnElement=\"Flow_1b18fiq\"><di:waypoint x=\"1100\" y=\"318\" /><di:waypoint x=\"1142\" y=\"318\" /></bpmndi:BPMNEdge></bpmndi:BPMNPlane></bpmndi:BPMNDiagram></bpmn2:definitions>",
+  "processTree": {
+    "tree": {
+      "Process": [
+        {
+          "[Activity_1lrvlsb][0]": "Activity_0re4tku"
+        }
+      ]
+    },
+    "nodeInfo": {
+      "Activity_0re4tku": {
+        "label": "BrowserGetText",
+        "concept": "BrowserGetText"
+      },
+      "Activity_1lrvlsb": {
+        "label": "WithBrowser",
+        "concept": "WithBrowser"
+      }
+    }
+  },
+  "__v": "0"
+}

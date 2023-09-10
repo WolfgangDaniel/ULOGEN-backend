@@ -11,7 +11,7 @@ router.get("/", BotModelController.getBotModels);
 /**
  * Get specified BotModels
  */
- router.get("/specificBotModels", BotModelController.getSpecificBotModels);
+ router.get("/generateUiLogs", BotModelController.generateUiLogs);
 
 
 /**
