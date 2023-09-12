@@ -3,6 +3,8 @@ import BotModel from "../models/BotModel";
 import BaseController from "../controllers/BaseController";
 import BotLinkerContext from "../botLinkers/botLinkerContext";
 import fs from 'fs';
+import { scyllaAPIRequest } from "../utils/xmlToXes";
+import { v4 as uuidv4 } from 'uuid';
 
 class BotModelController extends BaseController {
   getBotModels = async (req: Request, res: Response): Promise<void | any> => {
@@ -16,6 +18,7 @@ class BotModelController extends BaseController {
   };
 
   generateUiLogs = async (req: Request, res: Response): Promise<void | any> => {
+
     try {
       console.log(req.query)
       const botModelsForUiLog: any[] = typeof req.query.BotModelsForUiLog === 'undefined' ? [] : (req.query.BotModelsForUiLog as any[]);
@@ -28,18 +31,22 @@ class BotModelController extends BaseController {
         if (!botModel) {
           return BaseController.notFound(res);
         }
-          // Save the botModel to a JSON file with a unique name
-          const jsonFilePath = `botModel_${botModel._id}.json`;
-          fs.writeFileSync(jsonFilePath, JSON.stringify(botModel, null, 2));
+        const uniqueId = uuidv4();
+        const botIdWithUniqueId = `${botModel._id}_${uniqueId}`;
+        // Save the botModel to a JSON file with a unique name
+        const jsonFilePath = `./src/data/botModel_${botIdWithUniqueId}.bpmn`;
+        fs.writeFileSync(jsonFilePath, botModel.model);
+        scyllaAPIRequest(botIdWithUniqueId);
       }
+
       res.send(uiLog);
     } catch (error) {
       return BaseController.fail(res, error);
     }
   };
-  
+
   //In this code, I've changed the botModels array to hold document instances (botModel) rather than model instances. This should resolve the type error you encountered.
-  
+
   getBotModel = async (req: Request, res: Response): Promise<void | any> => {
     try {
       const botModel = await BotModel.findById(req.params.BotModelId);
